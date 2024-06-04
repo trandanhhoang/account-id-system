@@ -13,6 +13,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class KeyProvider {
 
+
+    /**
+     * calculate key by formula from functionMap, value from asset
+     *
+     * @param functionMap: contain formula
+     * @param asset: contain value to apply into formula
+     * @return key
+     */
     public String getKey(FunctionMap functionMap, Asset asset) {
         if (!functionMap.getAssetType().equals(asset.getAssetType())) {
             throw new RuntimeException("Asset type mismatch");

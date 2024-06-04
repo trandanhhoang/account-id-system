@@ -18,6 +18,12 @@ public class AccountIdService {
     private final ZasProvider zasProvider;
     private final KeyProvider keyProvider;
 
+
+    /**
+     * Register asset from UM, Bank, Merchant, ...
+     * @param asset
+     * @return {@link ZasIdMap} that contain key and value.
+     */
     public Mono<ZasIdMap> registerAsset(Asset asset) {
         return functionRepository.getLatestActiveFunction(asset.getAssetType())
                 .flatMap(function -> getKeyAndSaveZasIdMapping(function, asset));
