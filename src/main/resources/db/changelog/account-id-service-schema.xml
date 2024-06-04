@@ -1,0 +1,36 @@
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.7.xsd"
+>
+
+    <changeSet author="hoangtd4" id="init_database">
+        <sql>
+            CREATE TABLE IF NOT EXISTS function_mapping
+            (
+                id                         BIGSERIAL PRIMARY KEY,
+                asset_type                  VARCHAR(50) NOT NULL,
+                formula            VARCHAR(50) NOT NULL,
+                version                     VARCHAR(50) NOT NULL,
+                status                      VARCHAR(50)
+            );
+
+            CREATE TABLE IF NOT EXISTS zas_id_mapping
+            (
+                id                          BIGSERIAL PRIMARY KEY,
+                asset_type                  VARCHAR(50) NOT NULL,
+                key                         VARCHAR(50) NOT NULL,
+                value                       VARCHAR(50) NOT NULL,
+                function_id                 VARCHAR(50) NOT NULL
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet author="hoangtd4" id="insert_function">
+        <sql>
+            INSERT INTO function_mapping
+            (asset_type,formula,version,status)
+            values ('USER','userId|accountCode', '0.0.0','ACTIVE');
+        </sql>
+    </changeSet>
+</databaseChangeLog>
