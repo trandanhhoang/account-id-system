@@ -1,0 +1,22 @@
+version: '3.8'
+name: account-id-system
+services:
+  postgres:
+    image: postgres:15.5-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - local-postgres-v15:/var/lib/postgresql/data
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server
+volumes:
+  local-postgres-v15:
+    external: true
